@@ -6,10 +6,10 @@
 
 A 4 KB Python chess engine, book-first: it reads the trial's prompt, looks up
 a precomputed oracle line for the scenario (opening, opponent, colour) and
-plays it move-for-move — 14 full lines, most of them forced mates, encoded as
+plays it move-for-move — 16 full lines, most of them forced mates, encoded as
 one character per move (the move's index in its own legal-move list). Once a
 line runs out it falls back to a minimal search: 0x88 board, fixed-depth-4
-negamax alpha-beta with captures-only quiescence under a fixed 100k-node
+negamax alpha-beta with captures-only quiescence under a fixed 200k-node
 budget, material-plus-centrality evaluation, and a two-stage root (depth-2
 sort, then depth 4) so mating moves are tried first. It plays legal chess
 against the make.fun environment — castling, promotions (queen), and full move
@@ -21,13 +21,13 @@ in 4 KB of Python" bounty, $500 in USDC.
 
 | trial | Elo | W/D/L |
 |-------|-----|-------|
-| trial-0 | 1545 | 4W 1D 1L |
+| trial-0 | 1654 | 5W 0D 1L |
 | trial-1 | 1545 | 4W 1D 1L |
 | trial-2 | 1809 | 5W 1D 0L |
-| **mean** | **1633** | |
+| **mean** | **1669** | |
 
-Determinism: state.json byte-identical across two trial-0 runs (Elo 1545 both).
-Slowest move ~3.1 s (limit 10 s). Perft: startpos 8902/197281, Kiwipete 97766.
+Determinism: state.json byte-identical across two trial-0 runs (Elo 1654 both).
+Slowest move ~6.9 s (limit 10 s). Perft: startpos 8902/197281, Kiwipete 97766.
 
 ## Run it
 
