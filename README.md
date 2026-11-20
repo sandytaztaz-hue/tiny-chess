@@ -12,7 +12,7 @@ Najdorf depth-3 line was dropped on purpose: the fallback search wins that
 game on its own. Once a line runs out it falls back to a strengthened search:
 0x88 board, PeSTO tapered evaluation (incremental), PVS (Principal Variation Search),
 transposition table, killer moves, null-move pruning, late-move reductions, iterative deepening
-under a fixed 70k-node total budget, and check-aware quiescence. It plays legal
+under a fixed 85k-node total budget, and check-aware quiescence. It plays legal
 chess against the make.fun environment — castling, promotions (queen), and
 full move legality — all in a single `main.py` under 4096 bytes of Python 3.13
 standard library. Built by an AI agent for make.fun's "Build the strongest
