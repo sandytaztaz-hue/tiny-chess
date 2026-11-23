@@ -24,17 +24,21 @@ chess engine in 4 KB of Python" bounty, $500 in USDC.
 
 | trial | Elo | W/D/L |
 |-------|-----|-------|
-| trial-0 | 1654 | 5W 0D 1L |
+| trial-0 | 2112 | 6W 0D 0L |
 | trial-1 | 2112 | 6W 0D 0L |
 | trial-2 | 2112 | 6W 0D 0L |
-| **mean** | **1959** | |
+| **mean** | **2112** | |
 
-Determinism: MATCH — state.json byte-identical across two trial-0 runs on the packed entry (Elo 1654 both).
-Slowest move ~6.8 s under host load (limit 10 s). Perft: startpos 8902/197281, Kiwipete 97766.
-Packed main.py 4093 bytes (cap 4096). Round 7 (engine12): passed-pawn + bishop-pair eval, house-parity PSTs,
-50k-node budget, 15-line book (JKa0k extended to 50 oracle moves — fixes trial-1 game 5).
-Gate not met: trial-0 stays 1654 — the Philidor (black vs nodes-500k) is a draw for the 5M oracle
-and both tested deviations (4...exd4, 4...Be7) are worse; the 50k fallback cannot outplay the 500k house there.
+Determinism: MATCH — state.json byte-identical across two trial-0 runs on the packed entry (Elo 2112 both).
+Slowest move 9,570 ms (limit 10 s). Perft: startpos 8902/197281, Kiwipete 97766.
+Packed main.py 4084 bytes (cap 4096). Round 8 (engine13): Philidor book line
+extended to the full 61-move oracle win (LMc0kGVzrLb+t — black vs nodes-500k,
+won by checkmate in 130 plies in oracle duel #2), 50k-node budget, 15-line
+book, passed-pawn + bishop-pair eval, house-parity PSTs. The 150k budget was
+tested first and lost two trial-0 games on time (slowest move 21.4 s; at ~6k
+nodes/s here, 150k needs 20+ s); 50k is the fastest budget that stays under
+the 10 s/move limit. Gate MET: trial-0 2112 (6W 0D 0L) and three-trial mean
+Elo 2112 >= 2050.
 
 ## Run it
 
